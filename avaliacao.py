@@ -72,7 +72,12 @@ class Experimento():
         """
         Calcula a média do f1 dos resultados.
         """
-        return None
+        macro_f1s = []
+        for resultado in self.resultados:
+            macro_f1s.append(resultado.macro_f1)
+            
+        avg =  np.average(macro_f1s)
+        return avg
 
 class OtimizacaoObjetivo:
     def __init__(self,  fold: Fold):
