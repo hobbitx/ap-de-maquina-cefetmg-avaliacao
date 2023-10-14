@@ -114,7 +114,8 @@ class Resultado():
         #Atividade 1: substitua o none...lembre-se que já foi calculado o
         #f1 por classe no atributo calculado correspondente.
         #Lembre-se de como usar atributos calculados.
-        return None
+        m_f1 = self.f1_por_classe.values()
+        return sum(m_f1)/len(m_f1)
 
     @property
     def acuracia(self):
@@ -122,7 +123,7 @@ class Resultado():
         num_previstos_corretamente = 0
         for classe in range(len(self.mat_confusao)):
             #Atividade 1: complete o código abaixo, substituindo o None
-            num_previstos_corretamente += None
+            num_previstos_corretamente += self.mat_confusao[classe][classe]
 
         return num_previstos_corretamente/len(self.y)
 
