@@ -20,7 +20,7 @@ class Experimento():
         ClasseObjetivoOtimizacao: CLASSE a ser usada para otimização dos parametros
         """
         self.folds = folds
-        self._resultados = None
+        self._resultados = []
         self.ml_method = ml_method
         self.ClasseObjetivoOtimizacao = ClasseObjetivoOtimizacao
         self.num_trials = num_trials
@@ -50,12 +50,12 @@ class Experimento():
             #substitua os none quando necessario
             if(self.ClasseObjetivoOtimizacao is not None):
                 study = optuna.create_study(direction='maximize',sampler=self.sampler)
-                objetivo_otimizacao = self.ClasseObjetivoOtimizacao(fold)
-                study.optimize(objetivo_otimizacao, n_trials=self.num_trials)
+                optimization_goal = self.ClasseObjetivoOtimizacao(fold)
+                study.optimize(optimization_goal, n_trials=self.num_trials)
 
                 #1.(a) obtem o melhor metodo da otimização
                 #  . use o vetor arr_evaluated_methods e o número do best_trial (study.best_trial.number)
-                best_method = objetivo_otimizacao.arr_evaluated_methods[study.best_trial.number]
+                best_method = optimization_goal.arr_evaluated_methods[study.best_trial.number]
                 self.studies_per_fold.append(study)
             else:
                 #caso contrario, o metodo, atributo da classe Experimento (sem modificações) é usado
@@ -75,7 +75,7 @@ class Experimento():
         macro_f1s = []
         for resultado in self.resultados:
             macro_f1s.append(resultado.macro_f1)
-            
+
         avg =  np.average(macro_f1s)
         return avg
 
