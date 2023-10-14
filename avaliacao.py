@@ -122,14 +122,14 @@ class OtimizacaoObjetivoRandomForest(OtimizacaoObjetivo):
         #Para passar nos testes, os parametros devem ter o seguintes nomes: "min_samples_split",
         #. "max_features" e "num_arvores". Não mude a ordem de atribuição
         #. abaixo
-        min_samples = None
-        max_features = None
-        num_arvores = None
+        min_samples = trial.suggest_uniform("min_samples_split", 0.0, 0.5)
+        max_features = trial.suggest_uniform("max_features", 0.0, 0.5)
+        num_arvores = trial.suggest_int("num_arvores", 1, self.num_arvores_max)
         #coloque, ao instanciar o RandomForestClassifier como random_state=2
-        clf_rf = None
+        clf_rf =  RandomForestClassifier(n_estimators=num_arvores,max_features=max_features,min_samples_split=min_samples,random_state=2)
 
         return ScikitLearnAprendizadoDeMaquina(clf_rf)
 
     def resultado_metrica_otimizacao(self, resultado:Resultado) ->float:
         #Atividade 4: calcule o resultado por meio do macro_f1
-        return None
+        return resultado.macro_f1
