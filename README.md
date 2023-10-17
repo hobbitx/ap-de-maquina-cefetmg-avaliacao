@@ -15,11 +15,10 @@ Acurácia é o número de elementos previsto corretamente dividido pelo número 
 Para isso usamos a matriz de confusão onde a diagonal principal é a quantidade prevista corretamente: 
 
 Conforme o exemplo: 
-Onde linhas diz  a classe predita e a coluna a correta, então onde prevemos A e era realmente A é onde acertamos.
+Onde as linhas dizem a classe predita e as colunas, a classe correta, então onde prevemos A e era realmente A é onde acertamos.
 
 
-Nesse caso teríamos: (1+1+1)/(1+4+3+2+1+2+2+1+1)
-3/17 = 0.1764 ou 17% de acurácia 
+Nesse caso teríamos: (1+1+1)/(1+4+3+2+1+2+2+1+1) = 3/17 = 0.1764 ou 17% de acurácia 
 
 |   | A | B | C | 
 |---|---|---|---|
@@ -30,8 +29,8 @@ Nesse caso teríamos: (1+1+1)/(1+4+3+2+1+2+2+1+1)
 
 ### Atividade 2
 
-Na atividade 2 foi implementado a classe eval.
-Nesta classe separados o dataset `df_treino`  em duas partes `x_treino` e  `y_treino` que serão destinados a treinamento do modelo (`ml_method`), passado no construtor da classe. Para dividir esse dataset primeiro dropamos a `col_classe` que é a coluna identificadora da classe, e o resultado deste drop passamos para o `x_treino`, e em `y_treino` atribuímos apenas a coluna `col_classe`.
+Na atividade 2 foi implementada a classe eval.
+Nesta classe separamos o dataset `df_treino`  em duas partes `x_treino` e  `y_treino` que serão destinados a treinamento do modelo (`ml_method`), passado no construtor da classe. Para dividir esse dataset primeiro dropamos a `col_classe` que é a coluna identificadora da classe, e o resultado deste drop passamos para o `x_treino`, e em `y_treino` atribuímos apenas a coluna `col_classe`.
 
 Treinamos nosso modelo usando o método `fit` presente nos classificadores e regressores da `sklearn`.
 
@@ -43,7 +42,7 @@ Por fim retornamos uma classe Resultado contendo os valores preditos e os valore
 
 ### Atividade 3
 
-Na atividade 3 foi implementado a classe fold, que é responsável por gerar os k-folds, métodos de treino e teste para avaliar os modelos.
+Na atividade 3 foi implementada a classe fold, que é responsável por gerar os k-folds, métodos de treino e teste para avaliar os modelos.
 Esse método consiste em realizar a validação cruzada, escolhendo um conjunto de treino e teste diferente a cada execução.
 
 
